@@ -1,6 +1,7 @@
 import Field from "./Field";
 import './Game.css'
 import { useEffect, useState } from "react";
+import { Words } from "./Words";
 
 type GameProps = {
     columns: number;
@@ -15,33 +16,58 @@ const Game = ({columns, rows}: GameProps) => {
     const [activeInput, setActiveInput] = useState(0);
     const [letters, setLetters] = useState<string[]>(Array.from({length: numberOfFields}, () => ""));
 
+    function getRandomWord() {
+        return Words[Math.floor(Math.random() * Words.length)];
+    }
+
+    const wordToGuess = getRandomWord();
+
     function handleSubmit() {
-        setActiveRow(activeRow + 1)
-        setActiveInput((activeRow+1) * columns);
+        const word = letters.slice(activeRow * columns, (activeRow + 1) * columns).join("").toLowerCase();
+        console.log("Submitted word:", word);
+
+        if (word.length === columns && Words.includes(word)) {
+            console.log("Valid word");
+
+            setActiveRow(activeRow + 1)
+            setActiveInput((activeRow+1) * columns);
+        }
+        else {
+            console.log("Invalid word or incorrect length");
+        }
+    }
+
+    function handleLetter(letter: string) {
+        if (activeInput < (activeRow + 1) * columns) {
+            setLetters(prevLetters => {
+                const newLetters = [...prevLetters];
+                newLetters[activeInput] = letter;
+                return newLetters;
+            });
+            setActiveInput(activeInput + 1);
+        }
+    }
+
+    function handleBackspace() {
+        if (activeInput > activeRow * columns) {
+            setLetters(prevLetters => {
+                const newLetters = [...prevLetters];
+                newLetters[activeInput - 1] = "";
+                return newLetters;
+            });
+            setActiveInput(activeInput - 1);
+        }
     }
     
     useEffect(() => {
         function handleKeyDown(event: KeyboardEvent) {
             if (/^[a-zA-Z]$/.test(event.key)) {
                 const letter = event.key.toUpperCase();
-                if (activeInput < (activeRow + 1) * columns) {
-                    setLetters(prevLetters => {
-                        const newLetters = [...prevLetters];
-                        newLetters[activeInput] = letter;
-                        return newLetters;
-                    });
-                    setActiveInput(activeInput + 1);
-                }
+
+                handleLetter(letter);
             }
             else if (event.key === "Backspace") {
-                if (activeInput > activeRow * columns) {
-                    setLetters(prevLetters => {
-                        const newLetters = [...prevLetters];
-                        newLetters[activeInput - 1] = "";
-                        return newLetters;
-                    });
-                    setActiveInput(activeInput - 1);
-                }
+                handleBackspace();
             }
             else if (event.key === "Enter") {
                 handleSubmit();

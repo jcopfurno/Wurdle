@@ -1,0 +1,13 @@
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 4rem);
+    grid-template-rows: repeat(6, 4rem);
+    gap: 8px;
+}
+
+.game{
+    display: flex;
+    flex-direction: row;
+    gap: 4rem;
+    align-items: center;
+}

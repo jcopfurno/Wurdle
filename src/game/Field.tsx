@@ -5,7 +5,8 @@ type Props = {
     row: number;
     col: number;
     activeRow: number;
-    letters: string[];
+    letter: string;
+    color: string;
 }
 
 const Field = ({
@@ -13,14 +14,13 @@ const Field = ({
         row, 
         col,
         activeRow,
-        letters
+        letter,
+        color
     }: Props) => {
     return (
         <>
-            <div className="field">
-                <div>
-                    {letters[index]}
-                </div>
+            <div className={`field ${color}`}>
+                {letter}
             </div>
         </>
     )

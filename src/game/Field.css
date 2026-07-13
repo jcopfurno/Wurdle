@@ -21,3 +21,19 @@
         font-size: 1.5rem;
     }
 }
+
+.field.white {
+    background-color: white;
+}
+
+.field.green {
+    background-color: green;
+}
+
+.field.yellow {
+    background-color: yellow;
+}
+
+.field.gray {
+    background-color: gray;
+}

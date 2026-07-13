@@ -15,12 +15,47 @@ const Game = ({columns, rows}: GameProps) => {
     const [activeRow, setActiveRow] = useState(0);
     const [activeInput, setActiveInput] = useState(0);
     const [letters, setLetters] = useState<string[]>(Array.from({length: numberOfFields}, () => ""));
+    const [colors, setColors] = useState<string[]>(Array.from({length: numberOfFields}, () => "white"));
 
-    function getRandomWord() {
-        return Words[Math.floor(Math.random() * Words.length)];
+    function getRandomWord() { 
+        const randomWord = Words[Math.floor(Math.random() * Words.length)]
+
+        console.log("Random word to guess:", randomWord);
+
+        return randomWord;
     }
 
-    const wordToGuess = getRandomWord();
+    const [wordToGuess, setWordToGuess] = useState(getRandomWord);
+
+    function handleCheck(word: string) {
+        const newColors = [...colors];
+        const rowOffset = activeRow * columns;
+
+        const remaining: Record<string, number> = {};
+
+        for (let i = 0; i < word.length; i++) {
+            if (word[i] === wordToGuess[i]) {
+                newColors[rowOffset + i] = "green";
+            }
+            else {
+                remaining[wordToGuess[i]] = (remaining[wordToGuess[i]] ?? 0) + 1;
+            }
+        }
+
+        for (let i = 0; i < word.length; i++) {
+            if (newColors[rowOffset + i] === "green") continue;
+
+            if (remaining[word[i]] > 0) {
+                newColors[rowOffset + i] = "yellow";
+                remaining[word[i]]--;
+            }
+            else {
+                newColors[rowOffset + i] = "gray";
+            }
+        }
+
+        setColors(newColors);
+    }
 
     function handleSubmit() {
         const word = letters.slice(activeRow * columns, (activeRow + 1) * columns).join("").toLowerCase();
@@ -28,6 +63,8 @@ const Game = ({columns, rows}: GameProps) => {
 
         if (word.length === columns && Words.includes(word)) {
             console.log("Valid word");
+
+            handleCheck(word);
 
             setActiveRow(activeRow + 1)
             setActiveInput((activeRow+1) * columns);
@@ -91,14 +128,11 @@ const Game = ({columns, rows}: GameProps) => {
                             row={Math.floor(index / columns)} 
                             col={index % columns} 
                             activeRow={activeRow}
-                            letters={letters}
+                            letter={letters[index]}
+                            color={colors[index]}
                         />
                     ))}
                 </div>
-
-                <button onClick={() => handleSubmit()}>
-                    <h1> Submit </h1>
-                </button>
             </div>
         </>
     )

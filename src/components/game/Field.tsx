@@ -20,7 +20,7 @@ const Field = ({
     return (
         <>
             <div className={`field ${color}`}>
-                {letter}
+                <b> {letter} </b>
             </div>
         </>
     )

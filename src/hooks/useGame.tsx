@@ -1,21 +1,20 @@
-import Field from "./Field";
-import './Game.css'
 import { useEffect, useState } from "react";
-import { Words } from "./Words";
+import { Words } from "../utils/Words";
 
-type GameProps = {
-    columns: number;
+type Props = {
     rows: number;
+    columns: number;
 }
 
-const Game = ({columns, rows}: GameProps) => {
-    const numberOfFields = columns * rows;
+function useGame ({rows, columns}: Props) {
+    const numberOfFields =  rows * columns;
     const fields = Array.from({length: numberOfFields});
 
     const [activeRow, setActiveRow] = useState(0);
     const [activeInput, setActiveInput] = useState(0);
     const [letters, setLetters] = useState<string[]>(Array.from({length: numberOfFields}, () => ""));
     const [colors, setColors] = useState<string[]>(Array.from({length: numberOfFields}, () => "white"));
+    const [wordToGuess, setWordToGuess] = useState(getRandomWord);
 
     function getRandomWord() { 
         const randomWord = Words[Math.floor(Math.random() * Words.length)]
@@ -25,7 +24,6 @@ const Game = ({columns, rows}: GameProps) => {
         return randomWord;
     }
 
-    const [wordToGuess, setWordToGuess] = useState(getRandomWord);
 
     function handleCheck(word: string) {
         const newColors = [...colors];
@@ -95,7 +93,7 @@ const Game = ({columns, rows}: GameProps) => {
             setActiveInput(activeInput - 1);
         }
     }
-    
+
     useEffect(() => {
         function handleKeyDown(event: KeyboardEvent) {
             if (/^[a-zA-Z]$/.test(event.key)) {
@@ -118,24 +116,13 @@ const Game = ({columns, rows}: GameProps) => {
         };
     }, [activeInput, activeRow, columns]);
 
-    return (
-        <>
-            <div className="game">
-                <div className="grid">
-                    {fields.map((_, index) => (
-                        <Field
-                            index={index}
-                            row={Math.floor(index / columns)} 
-                            col={index % columns} 
-                            activeRow={activeRow}
-                            letter={letters[index]}
-                            color={colors[index]}
-                        />
-                    ))}
-                </div>
-            </div>
-        </>
-    )
+    return {
+        activeRow,
+        activeInput,
+        letters,
+        colors,
+        fields
+    }
 }
 
-export default Game;
+export default useGame;

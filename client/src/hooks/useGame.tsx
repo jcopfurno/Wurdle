@@ -13,7 +13,7 @@ function useGame ({rows, columns}: Props) {
     const [activeRow, setActiveRow] = useState(0);
     const [activeInput, setActiveInput] = useState(0);
     const [letters, setLetters] = useState<string[]>(Array.from({length: numberOfFields}, () => ""));
-    const [colors, setColors] = useState<string[]>(Array.from({length: numberOfFields}, () => "white"));
+    const [colors, setColors] = useState<string[]>(Array.from({length: numberOfFields}, () => "black"));
     const [wordToGuess, setWordToGuess] = useState(getRandomWord);
 
     function getRandomWord() { 
@@ -23,7 +23,6 @@ function useGame ({rows, columns}: Props) {
 
         return randomWord;
     }
-
 
     function handleCheck(word: string) {
         const newColors = [...colors];

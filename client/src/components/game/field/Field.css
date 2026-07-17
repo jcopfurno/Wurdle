@@ -12,13 +12,12 @@
 }
 
 .field b {
-    font-family: Arial, sans-serif;
     font-size: 1.8rem;
     font-weight: bolder;
     user-select: none;
 }
 
-.field.white {
+.field.black {
     border: 2px solid #69696975;
     background-color: black;
 }

@@ -1,7 +1,9 @@
-import Field from "./Field";
-import './Game.css'
+import Field from "./field/Field";
+import Letter from "./letter/Letter";
+import './Game.css';
 import useGame from "../../hooks/useGame";
 import { useParams } from "react-router-dom";
+import { Letters } from "../../utils/Letters";
 
 type RouteParams = {
     rows: string;
@@ -28,15 +30,24 @@ const Game = ({}) => {
                 <div className="grid">
                     {fields.map((_, index) => (
                         <Field
-                            index={index}
-                            row={Math.floor(index / columns)} 
-                            col={index % columns} 
-                            activeRow={activeRow}
                             letter={letters[index]}
                             color={colors[index]}
                         />
                     ))}
                 </div>
+            
+                <div className="letters">
+                    {Letters.map((_, index) => (
+                        <div className="row">
+                            {Letters[index].map((letter, index) => (
+                                <Letter
+                                    letter={letter}
+                                />
+                            ))}
+                        </div>
+                    ))}
+
+                </div> 
             </div>
         </>
     )

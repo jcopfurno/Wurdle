@@ -13,6 +13,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "react-router-dom": "^7.18.1",
+    "supertokens-auth-react": "^0.51.2",
     "supertokens-web-js": "^0.16.0"
   },
   "devDependencies": {

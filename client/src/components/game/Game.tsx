@@ -17,11 +17,12 @@ const Game = ({}) => {
     const columns = Number(params.columns);
 
     const {
-        activeRow,
-        activeInput,
         letters,
         colors,
-        fields
+        fields,
+        handleSubmit,
+        handleLetter,
+        handleBackspace
     } = useGame({rows, columns});
 
     return (
@@ -37,10 +38,11 @@ const Game = ({}) => {
                 </div>
             
                 <div className="letters">
-                    {Letters.map((_, index) => (
+                    {Letters.map((_, row) => (
                         <div className="row">
-                            {Letters[index].map((letter, index) => (
+                            {Letters[row].map((letter, index) => (
                                 <Letter
+                                    handleLetter={handleLetter}
                                     letter={letter}
                                 />
                             ))}

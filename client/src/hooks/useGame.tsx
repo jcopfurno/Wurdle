@@ -24,6 +24,7 @@ function useGame ({rows, columns}: Props) {
         return randomWord;
     }
 
+
     function handleCheck(word: string) {
         const newColors = [...colors];
         const rowOffset = activeRow * columns;
@@ -116,11 +117,13 @@ function useGame ({rows, columns}: Props) {
     }, [activeInput, activeRow, columns]);
 
     return {
-        activeRow,
-        activeInput,
         letters,
         colors,
-        fields
+        fields,
+
+        handleSubmit,
+        handleLetter,
+        handleBackspace
     }
 }
 

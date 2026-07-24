@@ -1,0 +1,116 @@
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+
+    border-right: 1px solid #3a3a3a;
+
+    background-color: #0A0A0A;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    transition: width 0.5s ease;
+}
+
+.sidebar.closed {
+    width: 50px;
+}
+
+.sidebar.open {
+    width: 225px;
+}
+
+.logo {
+    color: #fff;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.logo p {
+    font-size: 15px;
+}
+
+.sidebar.closed .logo {
+    opacity: 0;
+}
+
+.sidebar.open .logo {
+    opacity: 1;
+}
+
+#hamburger {
+    position: absolute;
+    color: #fff;
+    cursor: pointer;
+
+    top: 1rem;
+
+    left: 50%;
+    transform: translateX(-50%);
+    transition: left 0.5s ease;
+}
+
+.sidebar.open #hamburger {
+    left: 80%;
+}
+
+.items {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: row;
+
+    height: 40px;
+    font-size: large;
+    margin-bottom: 0.6rem;
+    margin-left: 5px;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 0.8rem;
+    padding-top: 0.65rem;
+    padding-right: 0.8rem;
+    padding-left: 0.8rem;
+    padding-bottom: 0.4rem;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #fff;
+    color: #12171e;
+}
+
+.sidebar.closed .nav-text {
+    display: none;
+}
+
+.sidebar.open .nav-text {
+    display: block;
+}
+
+.tooltip {
+    opacity: 0;
+    visibility: hidden;
+
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+
+    padding: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+.sidebar.closed .nav-item:hover .tooltip {
+    opacity: 1;
+    visibility: visible;
+}

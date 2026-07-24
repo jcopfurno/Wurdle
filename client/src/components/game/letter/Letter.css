@@ -4,7 +4,7 @@
     align-items: center;
 
     color: white;
-    background-color: rgb(130, 130, 130);
+    background-color: rgb(138, 138, 138);
 
     height: 4rem;
     width: 2.8rem;
@@ -13,4 +13,32 @@
     border: none;
 
     font-size: larger;
+
+    cursor: pointer;
+}
+
+.letter.gray {
+    background-color: rgb(138, 138, 138);
+}
+
+.letter.green {
+    background-color:#5bac52de;
+}
+
+.letter.yellow {
+    background-color:#c5b03be8;
+}
+
+.letter.black {
+    background-color: #69696975;
+}
+
+.letter.enter {
+    font-weight: 700;
+    font-size: medium;
+    width: 4.2rem;
+}
+
+.letter.backspace {
+    width: 4.2rem;
 }

@@ -16,6 +16,11 @@ function useGame ({rows, columns}: Props) {
     const [colors, setColors] = useState<string[]>(Array.from({length: numberOfFields}, () => "black"));
     const [wordToGuess, setWordToGuess] = useState(getRandomWord);
 
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+    const [letterColors, setLetterColors] = useState<Record<string, string>>(
+        Object.fromEntries(alphabet.map(letter => [letter, "gray"]))
+    );
+
     function getRandomWord() { 
         const randomWord = Words[Math.floor(Math.random() * Words.length)]
 
@@ -26,7 +31,9 @@ function useGame ({rows, columns}: Props) {
 
 
     function handleCheck(word: string) {
+        const upperWord = word.toUpperCase();
         const newColors = [...colors];
+        const newLetterColors = {...letterColors};
         const rowOffset = activeRow * columns;
 
         const remaining: Record<string, number> = {};
@@ -34,6 +41,9 @@ function useGame ({rows, columns}: Props) {
         for (let i = 0; i < word.length; i++) {
             if (word[i] === wordToGuess[i]) {
                 newColors[rowOffset + i] = "green";
+                
+                console.log("GREEN!")
+                newLetterColors[word[i].toUpperCase()] = "green";
             }
             else {
                 remaining[wordToGuess[i]] = (remaining[wordToGuess[i]] ?? 0) + 1;
@@ -46,13 +56,22 @@ function useGame ({rows, columns}: Props) {
             if (remaining[word[i]] > 0) {
                 newColors[rowOffset + i] = "yellow";
                 remaining[word[i]]--;
+
+                if (newLetterColors[word[i].toUpperCase()] != "green") {
+                    newLetterColors[word[i].toUpperCase()] = "yellow";
+                }
             }
             else {
                 newColors[rowOffset + i] = "gray";
+
+                if (newLetterColors[word[i].toUpperCase()] === "gray") {
+                    newLetterColors[word[i].toUpperCase()] = "black";
+                }
             }
         }
 
         setColors(newColors);
+        setLetterColors(newLetterColors);
     }
 
     function handleSubmit() {
@@ -120,6 +139,7 @@ function useGame ({rows, columns}: Props) {
         letters,
         colors,
         fields,
+        letterColors,
 
         handleSubmit,
         handleLetter,

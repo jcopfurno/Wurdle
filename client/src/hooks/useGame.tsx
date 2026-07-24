@@ -14,6 +14,7 @@ function useGame ({rows, columns}: Props) {
     const [activeInput, setActiveInput] = useState(0);
     const [letters, setLetters] = useState<string[]>(Array.from({length: numberOfFields}, () => ""));
     const [colors, setColors] = useState<string[]>(Array.from({length: numberOfFields}, () => "black"));
+    const [shakingRow, setShakingRow] = useState<number | null>(null);
     const [wordToGuess, setWordToGuess] = useState(getRandomWord);
 
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
@@ -31,7 +32,6 @@ function useGame ({rows, columns}: Props) {
 
 
     function handleCheck(word: string) {
-        const upperWord = word.toUpperCase();
         const newColors = [...colors];
         const newLetterColors = {...letterColors};
         const rowOffset = activeRow * columns;
@@ -87,7 +87,12 @@ function useGame ({rows, columns}: Props) {
             setActiveInput((activeRow+1) * columns);
         }
         else {
-            console.log("Invalid word or incorrect length");
+            setShakingRow(activeRow);
+            
+            setTimeout(() => {
+                setShakingRow(null);
+            }, 400)
+            console.log("Invalid word");
         }
     }
 
@@ -140,8 +145,7 @@ function useGame ({rows, columns}: Props) {
         colors,
         fields,
         letterColors,
-
-        activeRow,
+        shakingRow,
 
         handleSubmit,
         handleLetter,

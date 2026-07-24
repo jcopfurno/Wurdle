@@ -5,15 +5,15 @@ import { Link } from "react-router-dom";
 
 
 const Sidebar = () => {
-    const [activeSidebar, setActiveSidebar] = useState(false);
+    const [sidebarOpen, setSidebarOpen] = useState(false);
 
     return (
-        <div className={`sidebar ${activeSidebar ? "open" : "closed"}`}>
+        <div className={`sidebar ${sidebarOpen ? "open" : "closed"}`}>
             <div className="top">
                 <div className="logo">
                     <p> Wurdle </p>
                 </div>
-                <RxHamburgerMenu id="hamburger" size={20} onClick={() => setActiveSidebar(!activeSidebar)}/>
+                <RxHamburgerMenu id="hamburger" size={20} onClick={() => setSidebarOpen(!sidebarOpen)}/>
             </div>
             <div className="user">
 

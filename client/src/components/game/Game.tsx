@@ -23,7 +23,7 @@ const Game = ({}) => {
         colors,
         fields,
         letterColors,
-        activeRow,
+        shakingRow,
         handleSubmit,
         handleLetter,
         handleBackspace
@@ -38,6 +38,7 @@ const Game = ({}) => {
                             letter={letters[index]}
                             color={colors[index]}
                             index={index}
+                            shake={Math.floor(index / columns) === shakingRow}
                             columns={columns}
                         />
                     ))}

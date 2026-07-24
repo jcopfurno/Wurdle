@@ -22,6 +22,10 @@
     background-color: black;
 }
 
+.field.black.active {
+    border-color: rgb(69, 69, 69);
+}
+
 .field.green {
     background-color:#5bac52de;
 }
@@ -35,7 +39,11 @@
 }
 
 .field.correct {
-    animation: correct 600ms ease;
+    animation: correct 500ms ease;
+}
+
+.field.shake {
+    animation: shake 400ms ease-in-out;
 }
 
 @keyframes correct {
@@ -49,5 +57,31 @@
 
     100% {
         transform: rotateX(0deg);
+    }
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    20% {
+        transform: translateX(-5px);
+    }
+
+    40% {
+        transform: translateX(5px);
+    }
+
+    60% {
+        transform: translateX(-5px);
+    }
+
+    80% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
     }
 }

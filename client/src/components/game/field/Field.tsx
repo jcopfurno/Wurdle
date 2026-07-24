@@ -1,4 +1,4 @@
-import { Activity, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Field.css';
 
 type Props = {
@@ -6,35 +6,43 @@ type Props = {
     color: string;
     index: number;
     columns: number;
+    shake: boolean;
 }
 
 const Field = ({
         letter,
         color,
         index,
-        columns
+        columns,
+        shake
     }: Props) => {
 
     const [actualColor, setActualColor] = useState("black")
-    const [correctAnimation, setCorrectAnimation] = useState(false)
+    const [colorAnimation, setColorAnimation] = useState(false)
 
     const column = index % columns;
 
     useEffect(() => {
         if (color != "black") {
             setTimeout(() => {
-                setCorrectAnimation(true)
+                setColorAnimation(true)
 
                 setTimeout(() => {
                     setActualColor(color);
-                }, 300);
-            }, 500*column)
+                }, 250);
+            }, 250*column)
         }
     }, [color]);
 
     return (
         <>
-            <div className={`field ${actualColor} ${correctAnimation ? "correct" : ""}`}>
+            <div className={
+                    `field 
+                    ${actualColor} 
+                    ${colorAnimation ? "correct" : ""} 
+                    ${shake ? "shake" : ""}
+                    ${letter != "" ? "active" : ""}
+                `}>
                 <b> {letter} </b>
             </div>
         </>

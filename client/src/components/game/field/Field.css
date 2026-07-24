@@ -33,3 +33,21 @@
 .field.gray {
     background-color:#69696975;
 }
+
+.field.correct {
+    animation: correct 600ms ease;
+}
+
+@keyframes correct {
+    0% {
+        transform: rotateX(0deg);
+    }
+
+    50% {
+        transform: rotateX(90deg);
+    }
+
+    100% {
+        transform: rotateX(0deg);
+    }
+}

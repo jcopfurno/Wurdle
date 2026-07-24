@@ -141,6 +141,8 @@ function useGame ({rows, columns}: Props) {
         fields,
         letterColors,
 
+        activeRow,
+
         handleSubmit,
         handleLetter,
         handleBackspace

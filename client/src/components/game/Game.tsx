@@ -23,6 +23,7 @@ const Game = ({}) => {
         colors,
         fields,
         letterColors,
+        activeRow,
         handleSubmit,
         handleLetter,
         handleBackspace
@@ -36,6 +37,8 @@ const Game = ({}) => {
                         <Field
                             letter={letters[index]}
                             color={colors[index]}
+                            index={index}
+                            columns={columns}
                         />
                     ))}
                 </div>

@@ -19,7 +19,10 @@ function useGame ({rows, columns}: Props) {
     const [letters, setLetters] = useState<string[]>(Array.from({length: numberOfFields}, () => ""));
     const [colors, setColors] = useState<string[]>(Array.from({length: numberOfFields}, () => "black"));
     const [shakingRow, setShakingRow] = useState<number | null>(null);
-    const [wordToGuess, setWordToGuess] = useState(getRandomWord);
+    const [wordToGuess, setWordToGuess] = useState("adieu");
+    useEffect (() => {
+        setWordToGuess(getRandomWord());
+    }, []);
 
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     const [letterColors, setLetterColors] = useState<Record<string, string>>(

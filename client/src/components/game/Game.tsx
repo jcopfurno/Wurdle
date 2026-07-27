@@ -58,7 +58,7 @@ const Game = ({}) => {
                                 </button>
                             }
 
-                            {Letters[row].map((letter, index) => (
+                            {Letters[row].map((letter, _) => (
                                 <Letter
                                     handleLetter={handleLetter}
                                     color={letterColors[letter]}

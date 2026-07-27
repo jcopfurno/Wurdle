@@ -1,5 +1,6 @@
 import Field from "./field/Field";
 import Letter from "./letter/Letter";
+import EndDialogue from "./end_dialogue/EndDialogue";
 import './Game.css';
 import './letter/Letter.css';
 import useGame from "../../hooks/useGame";
@@ -24,9 +25,13 @@ const Game = ({}) => {
         fields,
         letterColors,
         shakingRow,
+        gameOver,
+        gameWon,
+        showEndDialogue,
         handleSubmit,
         handleLetter,
-        handleBackspace
+        handleBackspace,
+        toggleEndDialogue
     } = useGame({rows, columns});
 
     return (
@@ -43,7 +48,7 @@ const Game = ({}) => {
                         />
                     ))}
                 </div>
-            
+            {!gameOver ? 
                 <div className="letters">
                     {Letters.map((_, row) => (
                         <div className="row">
@@ -70,7 +75,30 @@ const Game = ({}) => {
                     ))}
 
                 </div> 
+                :
+                <div className="menu"> 
+                    <button
+                        onClick={toggleEndDialogue} 
+                        className="link"
+                    >
+                        See results 
+                    </button>
+
+                    <button 
+                        onClick={() => window.location.reload()} 
+                        className="link"
+                    > 
+                        Play again!
+                    </button>
+                </div>
+            }
             </div>
+            {showEndDialogue && 
+            
+            <EndDialogue
+                toggleEndDialogue={toggleEndDialogue}
+                gameWon={gameWon}
+            />}
         </>
     )
 }

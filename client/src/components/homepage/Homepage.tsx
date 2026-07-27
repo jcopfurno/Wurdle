@@ -8,12 +8,14 @@ const Homepage = ({}) => {
     return (
         <>  
             <div className="homepage">
-                <button 
-                    onClick={() => navigate("/wurdle/game/6/5")} 
-                    className="link"
-                > 
-                    Play Wurdle!
-                </button>
+                <div className="menu"> 
+                    <button 
+                        onClick={() => navigate("/game/6/5")} 
+                        className="link"
+                    > 
+                        Play Wurdle!
+                    </button>
+                </div>
             </div>
         </>
     )

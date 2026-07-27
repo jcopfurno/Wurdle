@@ -20,25 +20,7 @@ const Sidebar = () => {
             </div>
             <ul className="items">
                 <li className="nav-item">
-                    <Link to="/wurdle" className="nav-link">
-                        <RxDashboard className="nav-icon"/> 
-                        
-                        <span className="nav-text"> Homepage </span>
-                    </Link>
-
-                    <span className="tooltip"> Homepage </span>
-                </li>
-                <li className="nav-item">
-                    <Link to="/wurdle" className="nav-link">
-                        <RxDashboard className="nav-icon"/> 
-                        
-                        <span className="nav-text"> Homepage </span>
-                    </Link>
-
-                    <span className="tooltip"> Homepage </span>
-                </li>
-                <li className="nav-item">
-                    <Link to="/wurdle" className="nav-link">
+                    <Link to="/" className="nav-link">
                         <RxDashboard className="nav-icon"/> 
                         
                         <span className="nav-text"> Homepage </span>

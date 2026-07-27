@@ -1,0 +1,40 @@
+#end_dialogue {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-color: gray;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 1rem;
+    background-color: black;
+    width: 300px;
+    height: 375px;
+
+    padding: 10px;
+}
+
+#end_dialogue_toggle {
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+
+    border-radius: 1rem;
+
+    position: absolute;
+    right: 0.5rem;
+    top: 0;
+
+    display: flex;
+    align-items: center;
+
+    font-size: 15px;
+}
+
+#end_dialogue_text {
+    width: 100%;
+
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+}

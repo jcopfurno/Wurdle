@@ -1,0 +1,29 @@
+.menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 10px;
+}
+
+p {
+    color: whitesmoke;
+}
+
+h2 {
+    color: whitesmoke;
+    text-align: center;
+}
+
+.link {
+    width: fit-content;
+    font-size: large;
+    background-color: white;
+    border-radius: 2rem;
+    text-decoration: none;
+    color: black;
+    border: none;
+    cursor: pointer;
+
+    padding: 1rem 1.8rem;
+}

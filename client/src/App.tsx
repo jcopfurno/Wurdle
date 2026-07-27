@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './App.css'
+import './styles/global.css'
 import Game from './components/game/Game'
 import Homepage from './components/homepage/Homepage'
 import Sidebar from './components/sidebar/Sidebar'
@@ -10,10 +11,9 @@ function App() {
       <div className="App">
             <BrowserRouter>
               <Sidebar/>
-              <Routes>
-                <Route path="/" element={<Navigate to="/wurdle" />} />
-                <Route path="/wurdle" element={<Homepage />} />
-                <Route path="/wurdle/game/:rows/:columns" element={<Game />} />
+              <Routes>]
+                <Route path="/" element={<Homepage />} />
+                <Route path="/game/:rows/:columns" element={<Game />} />
               </Routes>
             </BrowserRouter>
       </div>

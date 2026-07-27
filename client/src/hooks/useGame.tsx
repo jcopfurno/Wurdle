@@ -10,6 +10,10 @@ function useGame ({rows, columns}: Props) {
     const numberOfFields =  rows * columns;
     const fields = Array.from({length: numberOfFields});
 
+    const [gameOver, setGameOver] = useState(false);
+    const [gameWon, setGameWon] = useState(false);
+    const [showEndDialogue, setShowEndDialogue] = useState(false)
+
     const [activeRow, setActiveRow] = useState(0);
     const [activeInput, setActiveInput] = useState(0);
     const [letters, setLetters] = useState<string[]>(Array.from({length: numberOfFields}, () => ""));
@@ -25,11 +29,15 @@ function useGame ({rows, columns}: Props) {
     function getRandomWord() { 
         const randomWord = Words[Math.floor(Math.random() * Words.length)]
 
-        console.log("Random word to guess:", randomWord);
+        //console.log("Random word to guess:", randomWord);
 
         return randomWord;
     }
 
+    function toggleEndDialogue () {
+        setShowEndDialogue(!showEndDialogue);
+    }
+    
 
     function handleCheck(word: string) {
         const newColors = [...colors];
@@ -42,7 +50,6 @@ function useGame ({rows, columns}: Props) {
             if (word[i] === wordToGuess[i]) {
                 newColors[rowOffset + i] = "green";
                 
-                console.log("GREEN!")
                 newLetterColors[word[i].toUpperCase()] = "green";
             }
             else {
@@ -70,6 +77,20 @@ function useGame ({rows, columns}: Props) {
             }
         }
 
+        let correctGuess = true;
+        for (let i = 0; i < columns; i++) {
+            if (newColors[rowOffset + i] != "green") {
+                correctGuess = false;
+            }
+        }
+
+        if (correctGuess) {
+            setGameWon(true)
+            setTimeout(() => {
+                setGameOver(true);
+            }, 1750);
+        }
+
         setColors(newColors);
         setLetterColors(newLetterColors);
     }
@@ -82,6 +103,11 @@ function useGame ({rows, columns}: Props) {
             console.log("Valid word");
 
             handleCheck(word);
+            if (activeRow + 1 >= rows) {
+                setTimeout(() => {
+                    setGameOver(true);
+                }, 1750);
+            }
 
             setActiveRow(activeRow + 1)
             setActiveInput((activeRow+1) * columns);
@@ -119,6 +145,12 @@ function useGame ({rows, columns}: Props) {
     }
 
     useEffect(() => {
+        if (gameOver) {
+            setShowEndDialogue(true);
+        }
+    }, [gameOver])
+
+    useEffect(() => {
         function handleKeyDown(event: KeyboardEvent) {
             if (/^[a-zA-Z]$/.test(event.key)) {
                 const letter = event.key.toUpperCase();
@@ -146,10 +178,14 @@ function useGame ({rows, columns}: Props) {
         fields,
         letterColors,
         shakingRow,
+        gameOver,
+        gameWon,
+        showEndDialogue,
 
         handleSubmit,
         handleLetter,
-        handleBackspace
+        handleBackspace,
+        toggleEndDialogue
     }
 }
 

@@ -6,17 +6,21 @@ import Homepage from './components/homepage/Homepage'
 import Sidebar from './components/sidebar/Sidebar'
 
 function App() {
+  console.log(import.meta.env.BASE_URL)
+
   return (
     <>
-      <div className="App">
-            <BrowserRouter>
-              <Sidebar/>
-              <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/game/:rows/:columns" element={<Game />} />
-              </Routes>
-            </BrowserRouter>
-      </div>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <div className="App">
+          <Sidebar/>
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Homepage />} />
+              <Route path="/game/:rows/:columns" element={<Game />} />
+            </Routes>
+          </div>
+        </div>
+      </BrowserRouter>
     </>
   )
 }

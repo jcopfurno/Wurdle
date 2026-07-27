@@ -6,8 +6,8 @@
     color: white;
     background-color: rgb(138, 138, 138);
 
-    height: 4rem;
-    width: 2.8rem;
+    aspect-ratio: 2.8 / 4;
+    width: min(2.8rem, 6vw);
     
     border-radius: 0.3rem;
     border: none;
@@ -15,6 +15,10 @@
     font-size: larger;
 
     cursor: pointer;
+}
+
+.letter {
+    font-size: max(1.4cqw, 15px);
 }
 
 .letter.gray {
@@ -34,11 +38,13 @@
 }
 
 .letter.enter {
-    font-weight: 700;
-    font-size: medium;
-    width: 4.2rem;
+    font-weight: 600;
+    font-size: max(1.3cqw, 12px);
+    aspect-ratio: 4.2 / 4;
+    width: min(4.2rem, 9vw);
 }
 
 .letter.backspace {
-    width: 4.2rem;
+    aspect-ratio: 4.2 / 4;
+    width: min(4.2rem, 9vw);
 }

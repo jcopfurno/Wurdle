@@ -114,3 +114,23 @@
     opacity: 1;
     visibility: visible;
 }
+
+@media (max-width: 768px) {
+    .sidebar.closed {
+        border: none;
+        background-color: black;
+        z-index: 0;
+    }
+
+    .sidebar.closed .items {
+        display: none;
+    } 
+
+    .sidebar.open {
+        z-index: 99;
+    }
+
+    #hamburger {
+        opacity: 1;
+    }
+}

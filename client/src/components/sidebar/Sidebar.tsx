@@ -15,9 +15,6 @@ const Sidebar = () => {
                 </div>
                 <RxHamburgerMenu id="hamburger" size={20} onClick={() => setSidebarOpen(!sidebarOpen)}/>
             </div>
-            <div className="user">
-
-            </div>
             <ul className="items">
                 <li className="nav-item">
                     <Link to="/" className="nav-link">

@@ -13,6 +13,8 @@
     height: 375px;
 
     padding: 10px;
+
+    z-index: 2;
 }
 
 #end_dialogue_toggle {

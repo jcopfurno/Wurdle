@@ -13,12 +13,10 @@ function App() {
       <BrowserRouter basename={import.meta.env.BASE_URL}>
         <div className="App">
           <Sidebar/>
-          <div className="content">
             <Routes>
               <Route path="/" element={<Homepage />} />
               <Route path="/game/:rows/:columns" element={<Game />} />
             </Routes>
-          </div>
         </div>
       </BrowserRouter>
     </>

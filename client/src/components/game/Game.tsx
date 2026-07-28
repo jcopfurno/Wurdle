@@ -53,7 +53,10 @@ const Game = ({}) => {
                     {Letters.map((_, row) => (
                         <div className="row">
                             {row === 2 &&
-                                <button className="letter enter" onClick={()=> handleSubmit()}>
+                                <button className="letter enter" onClick={(e)=> {
+                                    handleSubmit()
+                                    e.currentTarget.blur()
+                                }}>
                                     ENTER
                                 </button>
                             }
@@ -67,7 +70,10 @@ const Game = ({}) => {
                             ))}
 
                             {row === 2 &&
-                                <button className="letter backspace" onClick={()=> handleBackspace()}>
+                                <button className="letter backspace" onClick={(e)=> {
+                                    handleBackspace()
+                                    e.currentTarget.blur()
+                                }}>
                                     <IoBackspaceOutline size={24}/>
                                 </button>
                             }

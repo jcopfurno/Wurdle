@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Redirecting...</title>
+        <script>
+            // Stores the URL we want to redirect to in sessionStorage
+            sessionStorage.redirect = location.href;
+
+            // Redirects to index.html which will then redirect to the correct URL
+            location.replace('/Wurdle/');
+        </script>
+    </head>
+  <body></body>
+</html>

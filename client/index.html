@@ -5,6 +5,19 @@
     <link rel="icon" type="image/png" href="./WurdleIcon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>wurdle</title>
+    <script>
+      (function () {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+
+        // If there's nothing in sessionStorage then we aren't coming from a 404 page, so do nothing
+        // if the URL in sessionStorage is the same as the current URL then we have already redirected, so do nothing
+        if (redirect && redirect !== location.href) {
+          // Rewrites the URL in the address bar
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -5,6 +5,19 @@
     <link rel="icon" type="image/png" href="/Wurdle/assets/WurdleIcon-Dlw9oPNe.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>wurdle</title>
+    <script>
+      (function () {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+
+        // If there's nothing in sessionStorage then we aren't coming from a 404 page, so do nothing
+        // if the URL in sessionStorage is the same as the current URL then we have already redirected, so do nothing
+        if (redirect && redirect !== location.href) {
+          // Rewrites the URL in the address bar
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
     <script type="module" crossorigin src="/Wurdle/assets/index-CgFbrnED.js"></script>
     <link rel="stylesheet" crossorigin href="/Wurdle/assets/index-B9YgVR_T.css">
   </head>

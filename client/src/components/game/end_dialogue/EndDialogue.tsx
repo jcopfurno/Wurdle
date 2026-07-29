@@ -5,9 +5,10 @@ import { useNavigate } from "react-router-dom"
 type Props = {
     toggleEndDialogue: () => void;
     gameWon: boolean;
+    initializeGame: () => void;
 }
 
-const EndDialogue = ({toggleEndDialogue, gameWon}: Props) => {
+const EndDialogue = ({toggleEndDialogue, gameWon, initializeGame}: Props) => {
     const navigate = useNavigate();
 
     return (
@@ -30,7 +31,7 @@ const EndDialogue = ({toggleEndDialogue, gameWon}: Props) => {
                 <div className="menu">
                     <button
                         className="link"
-                        onClick={() => window.location.reload()} 
+                        onClick={() => initializeGame()} 
                     >
                         Play again
                     </button>

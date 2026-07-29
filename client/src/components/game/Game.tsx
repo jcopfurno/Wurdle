@@ -28,6 +28,7 @@ const Game = ({}) => {
         gameOver,
         gameWon,
         showEndDialogue,
+        initalizeGame,
         handleSubmit,
         handleLetter,
         handleBackspace,
@@ -91,7 +92,7 @@ const Game = ({}) => {
                     </button>
 
                     <button 
-                        onClick={() => window.location.reload()} 
+                        onClick={() => initalizeGame()} 
                         className="link"
                     > 
                         Play again!
@@ -104,6 +105,7 @@ const Game = ({}) => {
             <EndDialogue
                 toggleEndDialogue={toggleEndDialogue}
                 gameWon={gameWon}
+                initializeGame={initalizeGame}
             />}
         </>
     )

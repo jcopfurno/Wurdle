@@ -13,17 +13,12 @@ function useGame ({rows, columns}: Props) {
     const [gameOver, setGameOver] = useState(false);
     const [gameWon, setGameWon] = useState(false);
     const [showEndDialogue, setShowEndDialogue] = useState(false)
-
     const [activeRow, setActiveRow] = useState(0);
     const [activeInput, setActiveInput] = useState(0);
     const [letters, setLetters] = useState<string[]>(Array.from({length: numberOfFields}, () => ""));
     const [colors, setColors] = useState<string[]>(Array.from({length: numberOfFields}, () => "black"));
     const [shakingRow, setShakingRow] = useState<number | null>(null);
     const [wordToGuess, setWordToGuess] = useState("adieu");
-    useEffect (() => {
-        setWordToGuess(getRandomWord());
-    }, []);
-
     const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
     const [letterColors, setLetterColors] = useState<Record<string, string>>(
         Object.fromEntries(alphabet.map(letter => [letter, "gray"]))
@@ -36,6 +31,30 @@ function useGame ({rows, columns}: Props) {
 
         return randomWord;
     }
+
+    const initalizeGame = () => {
+        setGameOver(false);
+        setGameWon(false);
+        setShowEndDialogue(false);
+        setActiveRow(0);
+        setActiveInput(0);
+
+        setLetters(Array.from({ length: numberOfFields }, () => ""));
+        setColors(Array.from({ length: numberOfFields }, () => "black"));
+        setShakingRow(null);
+
+        setWordToGuess(getRandomWord());
+
+        setLetterColors(
+            Object.fromEntries(
+                alphabet.map(letter => [letter, "gray"])
+            )
+        );
+    }
+
+    useEffect(()=> {
+        initalizeGame();
+    }, []);
 
     function toggleEndDialogue () {
         setShowEndDialogue(!showEndDialogue);
@@ -184,7 +203,8 @@ function useGame ({rows, columns}: Props) {
         gameOver,
         gameWon,
         showEndDialogue,
-
+        
+        initalizeGame,
         handleSubmit,
         handleLetter,
         handleBackspace,

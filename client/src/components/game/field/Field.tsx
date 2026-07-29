@@ -32,6 +32,12 @@ const Field = ({
                 }, 250);
             }, 250*column)
         }
+        else {
+            // resetting the puzzle
+            
+            setActualColor(color);
+            setColorAnimation(false);
+        }
     }, [color]);
 
     return (
